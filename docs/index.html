@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bloomlet — Beta</title>
+    <meta name="description" content="Calm, subtle inspirational pop-ups for macOS. A minimal menu bar app that gently brightens your day." />
+    <meta property="og:title" content="Bloomlet — Beta" />
+    <meta property="og:description" content="Calm, subtle inspirational pop-ups for macOS." />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#111827" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <div class="brand">
+          <span class="logo">🌸</span>
+          <span class="name">Bloomlet</span>
+          <span class="badge">Beta</span>
+        </div>
+        <div class="header-actions">
+          <button id="demo-show-header" class="header-cta header-demo">See Demo</button>
+          <a class="header-cta" href="https://github.com/idclark34/Bloomlet/releases/download/v0.1.0/Bloomlet-0.1.0.dmg">Download</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container">
+          <h1>Little moments of encouragement, right when you need them.</h1>
+          <p class="lead">A quiet macOS menu bar app that shows spontaneous, gentle affirmations—without interrupting your flow.</p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="https://github.com/idclark34/Bloomlet/releases/download/v0.1.0/Bloomlet-0.1.0.dmg">Download for macOS (DMG)</a>
+            <a class="btn btn-ghost" href="https://github.com/idclark34/Bloomlet/releases/download/v0.1.0/Bloomlet-0.1.0-mac.zip">Direct ZIP</a>
+          </div>
+          <div class="note">Requires macOS 12+ • Apple silicon and Intel supported</div>
+        </div>
+      </section>
+
+      <!-- Floating demo popup -->
+      <div id="demo-popup-container" class="demo-popup-container theme-pastel">
+        <div id="demo-popup" class="demo-popup" aria-live="polite" aria-atomic="true">
+          <div id="demo-text" class="demo-text">Hello</div>
+        </div>
+      </div>
+
+      <section class="features">
+        <div class="container grid">
+          <div class="feature">
+            <div class="icon">🕰️</div>
+            <h3>Gentle cadence</h3>
+            <p>Choose every 30, 60, or 120 minutes—or a random interval that feels natural.</p>
+          </div>
+          <div class="feature">
+            <div class="icon">🎨</div>
+            <h3>Thoughtful themes</h3>
+            <p>Light, Dark, or Pastel. Subtle styling that blends in with your desktop.</p>
+          </div>
+          <div class="feature">
+            <div class="icon">📚</div>
+            <h3>Curated messages</h3>
+            <p>Comforting, Motivational, and Mindfulness categories—edit the JSON to make it yours.</p>
+          </div>
+          <div class="feature">
+            <div class="icon">🔕</div>
+            <h3>Respectfully quiet</h3>
+            <p>No sign‑ups. No tracking. Sound is off by default. It's designed to be calm.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="how">
+        <div class="container">
+          <h2>How it works</h2>
+          <ol class="steps">
+            <li>Install and launch—the 🌸 appears in your menu bar.</li>
+            <li>Set your preferences: interval, theme, categories, font.</li>
+            <li>Let gentle notes appear during your day. Click the tray to pause or show one now.</li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="privacy">
+        <div class="container">
+          <h2>Privacy</h2>
+          <p>Bloomlet stores your preferences locally on your Mac. It does not collect analytics or send any data anywhere.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="foot-left">
+          <span>© <span id="year"></span> Bloomlet</span>
+          <span class="dot">•</span>
+          <a href="mailto:hello@example.com">Feedback</a>
+        </div>
+        <div class="foot-right">
+          <a href="https://github.com/idclark34/Bloomlet/releases/download/v0.1.0/Bloomlet-0.1.0.dmg">DMG</a>
+          <a href="https://github.com/idclark34/Bloomlet/releases/download/v0.1.0/Bloomlet-0.1.0-mac.zip">ZIP</a>
+        </div>
+      </div>
+    </footer>
+    <script>
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+    <script src="./demo.js"></script>
+  </body>
+  </html>
+
