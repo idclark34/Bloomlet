@@ -106,6 +106,29 @@
     </footer>
     <script>
       document.getElementById('year').textContent = new Date().getFullYear();
+      
+      // Handle download links with proper error handling
+      document.querySelectorAll('a[download]').forEach(link => {
+        link.addEventListener('click', function(e) {
+          const url = this.href;
+          const filename = url.split('/').pop();
+          
+          // Try native download first
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = filename;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          
+          // Fallback: open in new window if download doesn't trigger
+          setTimeout(() => {
+            if (document.hidden === false) {
+              window.open(url, '_blank');
+            }
+          }, 100);
+        });
+      });
     </script>
     <script src="./demo.js"></script>
   </body>
