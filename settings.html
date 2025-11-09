@@ -1,0 +1,169 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline';" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Settings</title>
+    <style>
+      :root {
+        --bg: #f8fafc;
+        --card: #ffffff;
+        --fg: #0f172a;
+        --muted: #64748b;
+        --border: #e2e8f0;
+        --primary: #111827;
+        --radius: 12px;
+      }
+      body { font-family: -apple-system, system-ui, Segoe UI, Roboto, sans-serif; margin: 0; background: var(--bg); color: var(--fg); }
+      .container { padding: 16px; }
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+        padding: 16px;
+      }
+      h1 { font-size: 18px; margin: 0 0 12px; }
+      .subtle { color: var(--muted); font-size: 12px; margin: -6px 0 12px; }
+      .section { padding: 12px 0; border-top: 1px solid var(--border); }
+      .section:first-of-type { border-top: 0; padding-top: 0; }
+      .field { margin-bottom: 12px; }
+      label { display: block; font-weight: 600; margin-bottom: 6px; }
+      select {
+        font-size: 14px;
+        width: 100%;
+        padding: 8px 10px;
+        border-radius: 10px;
+        border: 1px solid var(--border);
+        background: #fff;
+        color: var(--fg);
+        outline: none;
+      }
+      select:focus { border-color: #94a3b8; box-shadow: 0 0 0 4px rgba(148,163,184,0.2); }
+      .row { display: flex; align-items: center; gap: 10px; }
+      .hint { color: var(--muted); font-size: 12px; }
+      .actions { margin-top: 12px; display: flex; gap: 8px; }
+      button { padding: 10px 12px; border-radius: 10px; border: 1px solid var(--border); background: #fff; cursor: pointer; font-weight: 600; }
+      button.primary { background: var(--primary); color: #fff; border-color: var(--primary); }
+      button:hover { filter: brightness(0.98); }
+      button.primary:hover { filter: brightness(1.08); }
+      /* Toggle switch */
+      .toggle { display: flex; align-items: center; gap: 10px; cursor: pointer; user-select: none; }
+      .toggle input { position: absolute; opacity: 0; pointer-events: none; }
+      .switch {
+        position: relative;
+        width: 40px;
+        height: 24px;
+        background: #e5e7eb;
+        border-radius: 999px;
+        transition: background 0.2s ease;
+        border: 1px solid var(--border);
+      }
+      .switch::after {
+        content: '';
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        width: 20px;
+        height: 20px;
+        background: #fff;
+        border-radius: 50%;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.12);
+        transition: transform 0.2s ease;
+      }
+      .toggle input:checked + .switch {
+        background: #111827;
+        border-color: #111827;
+      }
+      .toggle input:checked + .switch::after {
+        transform: translateX(16px);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="card">
+        <h1>Settings</h1>
+        <div class="subtle">Tune when, how, and what you see.</div>
+
+        <div class="section">
+          <div class="field">
+            <label for="interval">Interval</label>
+            <select id="interval">
+              <option value="30m">Every 30 minutes</option>
+              <option value="60m">Every 1 hour</option>
+              <option value="120m">Every 2 hours</option>
+              <option value="random">Random between 1–2 hours</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="position">Position</label>
+            <select id="position">
+              <option value="corner">Corner</option>
+              <option value="center">Center</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="field">
+            <label for="theme">Theme</label>
+            <select id="theme">
+              <option value="light">Light</option>
+              <option value="dark">Dark</option>
+              <option value="pastel">Pastel</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="fontFamily">Font</label>
+            <select id="fontFamily">
+              <option value="system">System (San Francisco)</option>
+              <option value="serif">Serif (Georgia)</option>
+              <option value="mono">Monospace (Courier)</option>
+              <option value="rounded">Rounded (Comic Sans)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="field">
+            <label>Categories</label>
+            <label class="toggle">
+              <input id="comforting" type="checkbox" />
+              <span class="switch"></span>
+              <span>Comforting</span>
+            </label>
+            <label class="toggle">
+              <input id="motivational" type="checkbox" />
+              <span class="switch"></span>
+              <span>Motivational</span>
+            </label>
+            <label class="toggle">
+              <input id="mindfulness" type="checkbox" />
+              <span class="switch"></span>
+              <span>Mindfulness</span>
+            </label>
+          </div>
+          <div class="field">
+            <label class="toggle">
+              <input id="sound" type="checkbox" />
+              <span class="switch"></span>
+              <span>Enable gentle sound</span>
+            </label>
+            <div class="hint">Sound is off by default to stay quiet.</div>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button id="save" class="primary">Save</button>
+          <button id="test">Show a test pop-up</button>
+        </div>
+      </div>
+    </div>
+    <script src="./settings.js"></script>
+  </body>
+  </html>
+
+
+

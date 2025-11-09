@@ -1,0 +1,47 @@
+{
+  "name": "positive-pop-ups",
+  "version": "0.1.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron .",
+    "build": "electron-builder --mac",
+    "clean": "rm -rf dist out"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "description": "Calm, subtle inspirational pop-ups for macOS",
+  "devDependencies": {
+    "@electron/notarize": "^3.1.0",
+    "electron": "^38.2.0",
+    "electron-builder": "^26.0.12"
+  },
+  "type": "module",
+  "build": {
+    "productName": "Bloomlet",
+    "appId": "com.ianclark.positivepopups",
+    "mac": {
+      "category": "public.app-category.productivity",
+      "target": [
+        "dmg",
+        "zip"
+      ],
+      "hardenedRuntime": true,
+      "gatekeeperAssess": false,
+      "entitlements": "build/entitlements.mac.plist",
+      "entitlementsInherit": "build/entitlements.mac.plist",
+      "identity": "Ian Clark (C224CY39M8)"
+    },
+    "afterSign": "scripts/notarize.cjs",
+    "files": [
+      "index.js",
+      "preload.js",
+      "popup.html",
+      "popup.js",
+      "settings.html",
+      "settings.js",
+      "assets/**"
+    ]
+  }
+}

@@ -1,0 +1,118 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline';" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Positive Pop-Up</title>
+    <style>
+      :root {
+        --bg: #ffffff;
+        --fg: #1f2937;
+      }
+      .theme-dark { --bg: #1f2937; --fg: #f9fafb; }
+      .theme-pastel { --bg: #f7e8fc; --fg: #2c2c2c; }
+
+      html, body {
+        padding: 0; margin: 0; background: transparent; font-family: -apple-system, system-ui, Segoe UI, Roboto, sans-serif;
+      }
+      .card {
+        width: 100%; height: 100%; display: grid; place-items: center; box-sizing: border-box;
+        background: var(--bg); color: var(--fg); border-radius: 14px; padding: 16px; text-align: center;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+        -webkit-app-region: drag;
+        position: relative;
+      }
+      .msg { font-size: 16px; line-height: 1.4; }
+      .nodrag { -webkit-app-region: no-drag; }
+      .resize-handle {
+        position: absolute;
+        -webkit-app-region: no-drag;
+      }
+      .resize-handle.corner {
+        width: 16px;
+        height: 16px;
+        opacity: 0.3;
+        transition: opacity 0.2s;
+      }
+      .resize-handle.corner:hover {
+        opacity: 0.7;
+      }
+      .resize-handle.edge {
+        background: transparent;
+      }
+      .resize-br {
+        bottom: 0;
+        right: 0;
+        cursor: nwse-resize;
+      }
+      .resize-br::before,
+      .resize-br::after {
+        content: '';
+        position: absolute;
+        background: var(--fg);
+        border-radius: 1px;
+      }
+      .resize-br::before {
+        width: 2px;
+        height: 12px;
+        bottom: 4px;
+        right: 10px;
+        transform: rotate(45deg);
+      }
+      .resize-br::after {
+        width: 12px;
+        height: 2px;
+        bottom: 10px;
+        right: 4px;
+        transform: rotate(45deg);
+      }
+      /* Hide decorative resize lines to avoid perceived bottom border */
+      .resize-br::before,
+      .resize-br::after {
+        display: none;
+      }
+      .resize-bottom {
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 8px;
+        cursor: ns-resize;
+      }
+      .resize-right {
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 8px;
+        cursor: ew-resize;
+      }
+      /* Keep handle interactive but invisible unless hovered */
+      .resize-handle.corner { opacity: 0; }
+      .resize-handle.corner:hover { opacity: 0.6; }
+      .resize-top {
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 8px;
+        cursor: ns-resize;
+      }
+      .resize-left {
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 8px;
+        cursor: ew-resize;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root" class="card">
+      <div id="text" class="msg nodrag">Hello</div>
+      <div class="resize-handle corner resize-br"></div>
+    </div>
+    <script src="./popup.js"></script>
+  </body>
+  </html>
+
+
+
