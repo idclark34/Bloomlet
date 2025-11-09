@@ -22,7 +22,7 @@
         </div>
         <div class="header-actions">
           <button id="demo-show-header" class="header-cta header-demo">See Demo</button>
-          <a class="header-cta" href="https://github.com/idclark34/Bloomlet/releases/download/v0.1.0/Bloomlet-0.1.0.dmg" download>Download</a>
+          <a class="header-cta" href="https://github.com/idclark34/Bloomlet/releases/tag/v0.1.0" target="_blank">Download</a>
         </div>
       </div>
     </header>
@@ -33,8 +33,7 @@
           <h1>Little moments of encouragement, right when you need them.</h1>
           <p class="lead">A quiet macOS menu bar app that shows spontaneous, gentle affirmations—without interrupting your flow.</p>
           <div class="cta-row">
-            <a class="btn btn-primary" href="https://github.com/idclark34/Bloomlet/releases/download/v0.1.0/Bloomlet-0.1.0.dmg" download>Download for macOS (DMG)</a>
-            <a class="btn btn-ghost" href="https://github.com/idclark34/Bloomlet/releases/download/v0.1.0/Bloomlet-0.1.0-mac.zip" download>Direct ZIP</a>
+            <a class="btn btn-primary" href="https://github.com/idclark34/Bloomlet/releases/tag/v0.1.0" target="_blank">Download v0.1.0</a>
           </div>
           <div class="note">Requires macOS 12+ • Apple silicon and Intel supported</div>
         </div>
@@ -99,36 +98,12 @@
           <a href="mailto:hello@example.com">Feedback</a>
         </div>
         <div class="foot-right">
-          <a href="https://github.com/idclark34/Bloomlet/releases/download/v0.1.0/Bloomlet-0.1.0.dmg" download>DMG</a>
-          <a href="https://github.com/idclark34/Bloomlet/releases/download/v0.1.0/Bloomlet-0.1.0-mac.zip" download>ZIP</a>
+          <a href="https://github.com/idclark34/Bloomlet/releases/tag/v0.1.0" target="_blank">GitHub</a>
         </div>
       </div>
     </footer>
     <script>
       document.getElementById('year').textContent = new Date().getFullYear();
-      
-      // Handle download links with proper error handling
-      document.querySelectorAll('a[download]').forEach(link => {
-        link.addEventListener('click', function(e) {
-          const url = this.href;
-          const filename = url.split('/').pop();
-          
-          // Try native download first
-          const a = document.createElement('a');
-          a.href = url;
-          a.download = filename;
-          document.body.appendChild(a);
-          a.click();
-          document.body.removeChild(a);
-          
-          // Fallback: open in new window if download doesn't trigger
-          setTimeout(() => {
-            if (document.hidden === false) {
-              window.open(url, '_blank');
-            }
-          }, 100);
-        });
-      });
     </script>
     <script src="./demo.js"></script>
   </body>
