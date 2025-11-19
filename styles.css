@@ -54,11 +54,11 @@ body{
 }
 .note{margin-top:12px;color:var(--muted);font-size:12px}
 
-.demo-callout{
-  padding:48px 0 28px;
+.hero-demo{
+  margin:32px auto 24px;
   text-align:center;
 }
-.demo-callout .btn-demo{
+.hero-demo .btn-demo{
   padding:14px 28px;
   font-size:17px;
   border-radius:999px;
