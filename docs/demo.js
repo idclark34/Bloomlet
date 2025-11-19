@@ -3,6 +3,7 @@
   const popup = document.getElementById('demo-popup');
   const text = document.getElementById('demo-text');
   const showHeaderBtn = document.getElementById('demo-show-header');
+  const showHeroBtn = document.getElementById('demo-show-hero');
   
   // Dragging state
   let isDragging = false;
@@ -119,6 +120,7 @@
     container.classList.remove('dragging');
   });
 
-  showHeaderBtn.addEventListener('click', showDemoPopup);
+  if (showHeaderBtn) showHeaderBtn.addEventListener('click', showDemoPopup);
+  if (showHeroBtn) showHeroBtn.addEventListener('click', showDemoPopup);
 })();
 

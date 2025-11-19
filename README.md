@@ -17,10 +17,22 @@ npm run dev
 ### Build (macOS)
 
 ```bash
-npm run build
+npm run build:mac
 ```
 
 Artifacts in `dist/`. After renaming, builds will be named `Bloomlet-*.dmg/zip`.
+
+### Build (Windows)
+
+Run this on Windows (or in a Windows CI runner):
+
+```bash
+npm run build:win
+```
+
+Artifacts in `dist/` such as `Bloomlet-<version>-Setup.exe`.
+
+> **Code signing:** set `CSC_LINK` and `CSC_KEY_PASSWORD` to your code-signing certificate before building so Windows SmartScreen trusts the installer.
 
 ### Content
 

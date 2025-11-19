@@ -41,7 +41,33 @@ body{
 .btn-primary:hover{filter:brightness(1.05)}
 .btn-ghost{color:var(--fg);border:1px solid var(--border)}
 .btn-ghost:hover{background:rgba(255,255,255,.03)}
+.btn-demo{
+  background:linear-gradient(135deg,#f97316,#fb7185);
+  color:#0b1020;
+  border:none;
+  box-shadow:0 12px 30px rgba(251,113,133,0.25);
+  transition:transform 0.18s ease, box-shadow 0.18s ease;
+}
+.btn-demo:hover{
+  transform:translateY(-2px);
+  box-shadow:0 16px 32px rgba(251,113,133,0.32);
+}
 .note{margin-top:12px;color:var(--muted);font-size:12px}
+
+.demo-callout{
+  padding:48px 0 28px;
+  text-align:center;
+}
+.demo-callout .btn-demo{
+  padding:14px 28px;
+  font-size:17px;
+  border-radius:999px;
+}
+.demo-callout-hint{
+  margin-top:12px;
+  color:var(--muted);
+  font-size:14px;
+}
 
 .demo-popup-container{
   position:fixed;

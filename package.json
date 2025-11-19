@@ -5,7 +5,10 @@
   "scripts": {
     "start": "electron .",
     "dev": "electron .",
-    "build": "electron-builder --mac",
+    "build": "npm run build:mac",
+    "build:mac": "electron-builder --mac",
+    "build:win": "electron-builder --win",
+    "build:all": "electron-builder --mac --win",
     "clean": "rm -rf dist out"
   },
   "keywords": [],
@@ -32,6 +35,22 @@
       "entitlements": "build/entitlements.mac.plist",
       "entitlementsInherit": "build/entitlements.mac.plist",
       "identity": "Ian Clark (C224CY39M8)"
+    },
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "requestedExecutionLevel": "asInvoker",
+      "publisherName": "Ian Clark"
+    },
+    "nsis": {
+      "artifactName": "Bloomlet-${version}-Setup.${ext}",
+      "oneClick": false,
+      "allowElevation": false,
+      "allowToChangeInstallationDirectory": true,
+      "perMachine": false,
+      "createDesktopShortcut": true,
+      "deleteAppDataOnUninstall": false
     },
     "afterSign": "scripts/notarize.cjs",
     "files": [
