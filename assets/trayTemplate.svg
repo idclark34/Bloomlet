@@ -1,18 +1,14 @@
 <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!-- Monochrome cherry blossom — black on transparent for macOS template image -->
+  <!-- Monochrome cherry blossom for macOS menu bar template image -->
+  <!-- Wider, rounder petals so the flower reads clearly at 16-32px -->
   <g transform="translate(11,11)">
-    <!-- 5 petals at 72° intervals, tip at 10px from center -->
-    <path d="M0,0 C-2.8,-1.8 -3.2,-5.2 0,-10 C3.2,-5.2 2.8,-1.8 0,0"
-          fill="black" transform="rotate(0)"/>
-    <path d="M0,0 C-2.8,-1.8 -3.2,-5.2 0,-10 C3.2,-5.2 2.8,-1.8 0,0"
-          fill="black" transform="rotate(72)"/>
-    <path d="M0,0 C-2.8,-1.8 -3.2,-5.2 0,-10 C3.2,-5.2 2.8,-1.8 0,0"
-          fill="black" transform="rotate(144)"/>
-    <path d="M0,0 C-2.8,-1.8 -3.2,-5.2 0,-10 C3.2,-5.2 2.8,-1.8 0,0"
-          fill="black" transform="rotate(216)"/>
-    <path d="M0,0 C-2.8,-1.8 -3.2,-5.2 0,-10 C3.2,-5.2 2.8,-1.8 0,0"
-          fill="black" transform="rotate(288)"/>
-    <!-- Center -->
+    <!-- 5 petals: wider and more rounded so they don't look like a star -->
+    <ellipse cx="0" cy="-6" rx="3.5" ry="5.5" fill="black" transform="rotate(0)"/>
+    <ellipse cx="0" cy="-6" rx="3.5" ry="5.5" fill="black" transform="rotate(72)"/>
+    <ellipse cx="0" cy="-6" rx="3.5" ry="5.5" fill="black" transform="rotate(144)"/>
+    <ellipse cx="0" cy="-6" rx="3.5" ry="5.5" fill="black" transform="rotate(216)"/>
+    <ellipse cx="0" cy="-6" rx="3.5" ry="5.5" fill="black" transform="rotate(288)"/>
+    <!-- Center dot to tie petals together -->
     <circle r="3" fill="black"/>
   </g>
 </svg>

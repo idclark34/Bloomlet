@@ -287,9 +287,6 @@ function createTray() {
   ]);
   tray.setToolTip('Bloomlet');
   tray.setContextMenu(contextMenu);
-  if (isMac) {
-    try { tray.setTitle('🌸'); } catch (_) {}
-  }
 }
 
 function openSettings() {

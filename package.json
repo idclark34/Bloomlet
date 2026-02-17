@@ -46,8 +46,7 @@
       "target": [
         "nsis"
       ],
-      "requestedExecutionLevel": "asInvoker",
-      "publisherName": "Ian Clark"
+      "requestedExecutionLevel": "asInvoker"
     },
     "nsis": {
       "artifactName": "Bloomlet-${version}-Setup.${ext}",
