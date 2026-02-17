@@ -10,7 +10,8 @@
     "build:win": "electron-builder --win",
     "build:all": "electron-builder --mac --win",
     "clean": "rm -rf dist out",
-    "make-icons": "node scripts/make-icons.js"
+    "make-icons": "node scripts/make-icons.js",
+    "release:mac": "bash scripts/release-mac.sh"
   },
   "keywords": [],
   "author": "Ian Clark",
