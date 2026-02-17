@@ -1,0 +1,86 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Background: warm cream center fading to soft purple-pink -->
+    <radialGradient id="bg" cx="50%" cy="42%" r="72%">
+      <stop offset="0%"   stop-color="#FFF4FA"/>
+      <stop offset="55%"  stop-color="#F2D4EE"/>
+      <stop offset="100%" stop-color="#D0A8E0"/>
+    </radialGradient>
+
+    <!-- Corner vignette for depth -->
+    <radialGradient id="vignette" cx="50%" cy="50%" r="71%">
+      <stop offset="60%"  stop-color="#D0A8E0" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#7820A8" stop-opacity="0.20"/>
+    </radialGradient>
+
+    <!-- Golden center -->
+    <radialGradient id="centerGrad" cx="36%" cy="30%" r="68%">
+      <stop offset="0%"   stop-color="#FFF08A"/>
+      <stop offset="65%"  stop-color="#F5C030"/>
+      <stop offset="100%" stop-color="#D8880A"/>
+    </radialGradient>
+
+    <!-- Flower drop shadow -->
+    <filter id="flowerDrop" x="-22%" y="-22%" width="144%" height="144%">
+      <feDropShadow dx="0" dy="20" stdDeviation="30"
+                    flood-color="#8820B0" flood-opacity="0.20"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1024" height="1024" fill="url(#bg)"/>
+  <!-- Corner vignette -->
+  <rect width="1024" height="1024" fill="url(#vignette)"/>
+  <!-- Subtle top highlight -->
+  <ellipse cx="512" cy="220" rx="360" ry="200" fill="white" opacity="0.10"/>
+
+  <!-- Flower, centered at 512,512 -->
+  <g transform="translate(512,512)" filter="url(#flowerDrop)">
+
+    <!-- 5 petals at 72° intervals -->
+    <!-- Petal path: base at origin, tip at (0,-300), width ~124 at midpoint -->
+    <path d="M0,0 C-62,-38 -70,-158 0,-300 C70,-158 62,-38 0,0"
+          fill="#EBAACE" transform="rotate(0)"/>
+    <path d="M0,0 C-62,-38 -70,-158 0,-300 C70,-158 62,-38 0,0"
+          fill="#EBAACE" transform="rotate(72)"/>
+    <path d="M0,0 C-62,-38 -70,-158 0,-300 C70,-158 62,-38 0,0"
+          fill="#EBAACE" transform="rotate(144)"/>
+    <path d="M0,0 C-62,-38 -70,-158 0,-300 C70,-158 62,-38 0,0"
+          fill="#EBAACE" transform="rotate(216)"/>
+    <path d="M0,0 C-62,-38 -70,-158 0,-300 C70,-158 62,-38 0,0"
+          fill="#EBAACE" transform="rotate(288)"/>
+
+    <!-- Petal vein highlights (left-edge curve) -->
+    <path d="M0,-8 C-25,-50 -36,-158 0,-296"
+          stroke="white" stroke-width="4.5" stroke-linecap="round" fill="none"
+          transform="rotate(0)"   opacity="0.48"/>
+    <path d="M0,-8 C-25,-50 -36,-158 0,-296"
+          stroke="white" stroke-width="4.5" stroke-linecap="round" fill="none"
+          transform="rotate(72)"  opacity="0.48"/>
+    <path d="M0,-8 C-25,-50 -36,-158 0,-296"
+          stroke="white" stroke-width="4.5" stroke-linecap="round" fill="none"
+          transform="rotate(144)" opacity="0.48"/>
+    <path d="M0,-8 C-25,-50 -36,-158 0,-296"
+          stroke="white" stroke-width="4.5" stroke-linecap="round" fill="none"
+          transform="rotate(216)" opacity="0.48"/>
+    <path d="M0,-8 C-25,-50 -36,-158 0,-296"
+          stroke="white" stroke-width="4.5" stroke-linecap="round" fill="none"
+          transform="rotate(288)" opacity="0.48"/>
+
+    <!-- Golden center disk -->
+    <circle r="90" fill="url(#centerGrad)"/>
+    <!-- Rim -->
+    <circle r="90" fill="none" stroke="#C07010" stroke-width="4" opacity="0.30"/>
+    <!-- Inner highlight -->
+    <ellipse cx="-22" cy="-22" rx="48" ry="38" fill="white" opacity="0.22"/>
+
+    <!-- 5 stamen dots (r=65 from center, matching petal angles) -->
+    <!-- Angles from "up": 0°, 72°, 144°, 216°, 288° -->
+    <circle cx="0"   cy="-65" r="8" fill="#904008"/>  <!-- top -->
+    <circle cx="62"  cy="-20" r="8" fill="#904008"/>  <!-- upper-right -->
+    <circle cx="38"  cy="53"  r="8" fill="#904008"/>  <!-- lower-right -->
+    <circle cx="-38" cy="53"  r="8" fill="#904008"/>  <!-- lower-left -->
+    <circle cx="-62" cy="-20" r="8" fill="#904008"/>  <!-- upper-left -->
+
+  </g>
+</svg>

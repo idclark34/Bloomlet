@@ -259,8 +259,8 @@ function createTray() {
     // Fallback to a minimal 1x1 template image to ensure Tray initializes
     const dataUrl = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAOjf7iEAAAAASUVORK5CYII=';
     image = nativeImage.createFromDataURL(dataUrl);
-    image.setTemplateImage(true);
   }
+  image.setTemplateImage(true);
   tray = new Tray(image);
   const contextMenu = Menu.buildFromTemplate([
     {
@@ -315,6 +315,7 @@ function openSettings() {
 }
 
 function ready() {
+  if (isMac) app.dock.hide();
   prefs = loadPrefs();
   allMessages = loadMessages();
   console.log('Loaded messages:', allMessages.length);

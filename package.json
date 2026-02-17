@@ -9,16 +9,18 @@
     "build:mac": "electron-builder --mac",
     "build:win": "electron-builder --win",
     "build:all": "electron-builder --mac --win",
-    "clean": "rm -rf dist out"
+    "clean": "rm -rf dist out",
+    "make-icons": "node scripts/make-icons.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Ian Clark",
   "license": "MIT",
   "description": "Calm, subtle inspirational pop-ups for macOS",
   "devDependencies": {
     "@electron/notarize": "^3.1.0",
     "electron": "^38.2.0",
-    "electron-builder": "^26.0.12"
+    "electron-builder": "^26.0.12",
+    "sharp": "^0.34.5"
   },
   "type": "module",
   "build": {
@@ -26,6 +28,10 @@
     "appId": "com.ianclark.positivepopups",
     "mac": {
       "category": "public.app-category.productivity",
+      "icon": "build/icon.icns",
+      "extendInfo": {
+        "LSUIElement": true
+      },
       "target": [
         "dmg",
         "zip"
