@@ -5,6 +5,12 @@ module.exports = async function notarizing(context) {
     return;
   }
 
+  // MAS builds are notarized by Apple during review — skip here
+  if (process.env.MAS_BUILDING) {
+    console.log('Skipping notarization for MAS build');
+    return;
+  }
+
   // Check for required env vars
   if (!process.env.APPLE_ID || !process.env.APPLE_APP_SPECIFIC_PASSWORD) {
     console.log('Skipping notarization: APPLE_ID or APPLE_APP_SPECIFIC_PASSWORD not set');

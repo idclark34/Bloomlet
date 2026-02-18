@@ -11,7 +11,9 @@
     "build:all": "electron-builder --mac --win",
     "clean": "rm -rf dist out",
     "make-icons": "node scripts/make-icons.js",
-    "release:mac": "bash scripts/release-mac.sh"
+    "release:mac": "bash scripts/release-mac.sh",
+    "build:mas": "MAS_BUILDING=1 electron-builder --mac mas",
+    "release:mas": "bash scripts/release-mas.sh"
   },
   "keywords": [],
   "author": "Ian Clark",
@@ -42,6 +44,12 @@
       "entitlements": "build/entitlements.mac.plist",
       "entitlementsInherit": "build/entitlements.mac.plist",
       "identity": "Ian Clark (C224CY39M8)"
+    },
+    "mas": {
+      "icon": "build/icon.icns",
+      "entitlements": "build/entitlements.mas.plist",
+      "entitlementsInherit": "build/entitlements.mas.inherit.plist",
+      "provisioningProfile": "build/Bloomlet_AppStore.provisionprofile"
     },
     "win": {
       "target": [
