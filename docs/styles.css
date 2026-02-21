@@ -126,5 +126,9 @@ body{
 .site-footer a:hover{opacity:1}
 .foot-left{display:flex;align-items:center;gap:8px;color:var(--muted)}
 .foot-right{display:flex;gap:12px}
-.dot{opacity:.5}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--brand);margin-right:4px}
+.dot-active{background:var(--brand);}
+.dot-inactive{background:var(--muted);}
+.dot-inactive:hover{background:var(--brand);}
+
 

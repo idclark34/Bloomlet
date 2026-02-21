@@ -14,17 +14,20 @@ const messagesPath = path.join(appPath, 'assets', 'messages.json');
 
 const defaultPrefs = {
   interval: '60m', // options: 30m, 60m, 120m, random
+  popupDuration: 5, // seconds (1–10)
   theme: 'pastel', // light | dark | pastel
   categories: {
     comforting: true,
     motivational: true,
     mindfulness: true,
+    quotes: true,
   },
-  soundEnabled: false,
   position: 'corner', // corner | center
   popupPosition: null, // { x, y } remembered from user dragging
   popupSize: { width: 320, height: 120 }, // user's preferred size
   fontFamily: 'system', // system | serif | mono | rounded
+  customMessages: [], // user-written affirmations
+  userName: '', // used to personalize messages
 };
 
 function loadPrefs() {
@@ -88,7 +91,11 @@ function filteredMessages() {
     .filter(([, on]) => on)
     .map(([k]) => k);
   const list = allMessages.filter((m) => enabledCats.includes(m.category));
-  return list.length ? list : allMessages;
+  const base = list.length ? list : allMessages;
+  const custom = (prefs.customMessages || []).map((text) => ({ text, category: 'custom' }));
+  const all = [...base, ...custom];
+  // Only include personalized messages if the user has set their name
+  return prefs.userName ? all : all.filter((m) => !m.text.includes('{name}'));
 }
 
 function pickRandomMessage(preferCategory) {
@@ -185,10 +192,11 @@ function showPopup(options = {}) {
   popupWindow.showInactive();
   const deliver = () => {
     if (!popupWindow) return;
-    popupWindow.webContents.send('popup-message', { message: msg.text, theme: prefs.theme, fontFamily: prefs.fontFamily });
+    const messageText = msg.text.replace(/\{name\}/g, prefs.userName || '');
+    popupWindow.webContents.send('popup-message', { message: messageText, author: msg.author || null, theme: prefs.theme, fontFamily: prefs.fontFamily });
     // Stream typing from main to renderer
     let i = 0;
-    const full = msg.text;
+    const full = messageText;
     const step = () => {
       if (!popupWindow) return;
       i += 1;
@@ -216,8 +224,7 @@ function showPopup(options = {}) {
     popupWindow && popupWindow.setOpacity(Math.min(opacity, 1));
     if (opacity >= 1) {
       clearInterval(fadeIn);
-      // Test popups stay longer (15s), regular popups fade after 5-7s
-      const displayTime = options.isTest ? 15000 : 5000 + Math.floor(Math.random() * 2000);
+      const displayTime = (prefs.popupDuration ?? 5) * 1000;
       setTimeout(() => fadeOut(), displayTime);
     }
   }, 16);
@@ -253,6 +260,10 @@ function stopScheduler() {
 }
 
 function createTray() {
+  if (tray) {
+    tray.destroy();
+    tray = null;
+  }
   const iconPath = path.join(appPath, 'assets', 'trayTemplate.png');
   let image = nativeImage.createFromPath(iconPath);
   if (image.isEmpty()) {
@@ -266,7 +277,7 @@ function createTray() {
     {
       label: 'Show now',
       click: () => {
-        showPopup({ preferCategory: 'motivational', isTest: true });
+        setTimeout(() => showPopup({ preferCategory: 'motivational', isTest: true }), 5000);
       },
     },
     {
@@ -294,9 +305,20 @@ function openSettings() {
     settingsWindow.focus();
     return;
   }
+  const winWidth = 420;
+  const winHeight = 520;
+  const refPoint = (prefs.popupPosition && Number.isFinite(prefs.popupPosition.x))
+    ? prefs.popupPosition
+    : screen.getPrimaryDisplay().bounds;
+  const display = screen.getDisplayNearestPoint(refPoint);
+  const { x: dx, y: dy, width: dw, height: dh } = display.workArea;
+  const x = Math.round(dx + (dw - winWidth) / 2);
+  const y = Math.round(dy + (dh - winHeight) / 2);
   settingsWindow = new BrowserWindow({
-    width: 420,
-    height: 520,
+    width: winWidth,
+    height: winHeight,
+    x,
+    y,
     resizable: false,
     title: 'Settings',
     modal: false,

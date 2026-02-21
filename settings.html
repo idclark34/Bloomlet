@@ -89,6 +89,15 @@
 
         <div class="section">
           <div class="field">
+            <label for="userName">Your name (optional)</label>
+            <input id="userName" type="text" placeholder="e.g. Alex" maxlength="50"
+              style="font-size:14px;width:100%;padding:8px 10px;border-radius:10px;border:1px solid var(--border);outline:none;color:var(--fg);background:#fff;box-sizing:border-box" />
+            <div class="hint" style="margin-top:4px">Personalizes some messages just for you.</div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="field">
             <label for="interval">Interval</label>
             <select id="interval">
               <option value="30m">Every 30 minutes</option>
@@ -96,6 +105,14 @@
               <option value="120m">Every 2 hours</option>
               <option value="random">Random between 1–2 hours</option>
             </select>
+          </div>
+          <div class="field">
+            <div class="row" style="justify-content:space-between;margin-bottom:6px">
+              <label for="popupDuration" style="margin:0">Duration</label>
+              <span id="popupDurationLabel" class="hint"></span>
+            </div>
+            <input id="popupDuration" type="range" min="0" max="10" step="1"
+              style="width:100%;accent-color:#111827" />
           </div>
           <div class="field">
             <label for="position">Position</label>
@@ -144,20 +161,29 @@
               <span class="switch"></span>
               <span>Mindfulness</span>
             </label>
-          </div>
-          <div class="field">
             <label class="toggle">
-              <input id="sound" type="checkbox" />
+              <input id="quotes" type="checkbox" />
               <span class="switch"></span>
-              <span>Enable gentle sound</span>
+              <span>Quotes</span>
             </label>
-            <div class="hint">Sound is off by default to stay quiet.</div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="field">
+            <label>My affirmations</label>
+            <div class="hint" style="margin-bottom:8px">Add your own messages to the mix.</div>
+            <div style="display:flex;gap:6px;margin-bottom:8px">
+              <input id="custom-input" type="text" placeholder="Write something kind…" maxlength="200"
+                style="flex:1;font-size:14px;padding:8px 10px;border-radius:10px;border:1px solid var(--border);outline:none;color:var(--fg);background:#fff" />
+              <button id="custom-add">Add</button>
+            </div>
+            <ul id="custom-list" style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px"></ul>
           </div>
         </div>
 
         <div class="actions">
           <button id="save" class="primary">Save</button>
-          <button id="test">Show a test pop-up</button>
         </div>
       </div>
     </div>

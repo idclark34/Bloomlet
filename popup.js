@@ -1,6 +1,7 @@
 (() => {
   const root = document.getElementById('root');
   const text = document.getElementById('text');
+  const authorEl = document.getElementById('author');
   
   function scaleFontSize(width, height) {
     // Base size 16px at 320x120, scale proportionally
@@ -11,11 +12,11 @@
     text.style.fontSize = `${newSize}px`;
   }
 
-  window.positiveAPI.onPopupMessage(({ message, theme, fontFamily }) => {
+  window.positiveAPI.onPopupMessage(({ message, author, theme, fontFamily }) => {
     root.classList.remove('theme-dark','theme-pastel');
     if (theme === 'dark') root.classList.add('theme-dark');
     if (theme === 'pastel') root.classList.add('theme-pastel');
-    
+
     // Apply font family
     const fontMap = {
       system: '-apple-system, system-ui, Segoe UI, Roboto, sans-serif',
@@ -24,8 +25,9 @@
       rounded: '"Comic Sans MS", "Marker Felt", cursive'
     };
     text.style.fontFamily = fontMap[fontFamily] || fontMap.system;
-    
+
     text.textContent = '';
+    authorEl.textContent = author ? `— ${author}` : '';
   });
 
   window.positiveAPI.onTyping(({ chunk, reset }) => {

@@ -12,8 +12,22 @@
   { "text": "You are capable and resilient. ♡", "category": "motivational" },
   { "text": "You can do this. I believe in you. ✧", "category": "motivational" },
   { "text": "Your presence makes a positive difference. :)", "category": "motivational" },
-  { "text": "Keep going—you're closer than you think. ♡", "category": "motivational" }
+  { "text": "Keep going—you're closer than you think. ♡", "category": "motivational" },
+  { "text": "The only way to do great work is to love what you do.", "category": "quotes", "author": "Steve Jobs" },
+  { "text": "In the middle of every difficulty lies opportunity.", "category": "quotes", "author": "Albert Einstein" },
+  { "text": "It does not matter how slowly you go as long as you do not stop.", "category": "quotes", "author": "Confucius" },
+  { "text": "You are braver than you believe, stronger than you seem, and smarter than you think.", "category": "quotes", "author": "A.A. Milne" },
+  { "text": "Almost everything will work again if you unplug it for a few minutes, including you.", "category": "quotes", "author": "Anne Lamott" },
+  { "text": "Believe you can and you're halfway there.", "category": "quotes", "author": "Theodore Roosevelt" },
+  { "text": "Start where you are. Use what you have. Do what you can.", "category": "quotes", "author": "Arthur Ashe" },
+  { "text": "You don't have to be great to start, but you have to start to be great.", "category": "quotes", "author": "Zig Ziglar" },
+  { "text": "What you get by achieving your goals is not as important as what you become.", "category": "quotes", "author": "Henry David Thoreau" },
+  { "text": "The secret of getting ahead is getting started.", "category": "quotes", "author": "Mark Twain" },
+  { "text": "You've got this, {name}.", "category": "comforting" },
+  { "text": "Keep going, {name}. You're doing better than you know.", "category": "comforting" },
+  { "text": "Today is your day, {name}.", "category": "motivational" },
+  { "text": "{name}, your effort matters more than you realize.", "category": "motivational" },
+  { "text": "Take a breath, {name}. You're safe right now.", "category": "mindfulness" },
+  { "text": "One step at a time, {name}. That's enough.", "category": "mindfulness" },
+  { "text": "Someone is proud of you today, {name}. ♡", "category": "comforting" }
 ]
-
-
-

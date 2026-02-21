@@ -24,6 +24,7 @@
         position: relative;
       }
       .msg { font-size: 16px; line-height: 1.4; }
+      .author { font-size: 12px; opacity: 0.55; margin-top: 6px; font-style: italic; }
       .nodrag { -webkit-app-region: no-drag; }
       .resize-handle {
         position: absolute;
@@ -108,6 +109,7 @@
   <body>
     <div id="root" class="card">
       <div id="text" class="msg nodrag">Hello</div>
+      <div id="author" class="author nodrag"></div>
       <div class="resize-handle corner resize-br"></div>
     </div>
     <script src="./popup.js"></script>
