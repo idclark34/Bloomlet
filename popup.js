@@ -46,6 +46,38 @@
   // Set initial size on load
   scaleFontSize(window.innerWidth, window.innerHeight);
 
+  // Drag to move and click to dismiss
+  let dragState = null;
+
+  root.addEventListener('mousedown', (e) => {
+    if (e.target.closest('.resize-handle')) return;
+    dragState = { startX: e.screenX, startY: e.screenY, lastX: e.screenX, lastY: e.screenY, moved: false };
+    root.style.cursor = 'grabbing';
+    e.preventDefault();
+  });
+
+  document.addEventListener('mousemove', (e) => {
+    if (!dragState || isResizing) return;
+    const dx = e.screenX - dragState.lastX;
+    const dy = e.screenY - dragState.lastY;
+    if (!dragState.moved && (Math.abs(e.screenX - dragState.startX) > 4 || Math.abs(e.screenY - dragState.startY) > 4)) {
+      dragState.moved = true;
+    }
+    if (dragState.moved) {
+      window.positiveAPI.moveWindow(dx, dy);
+      dragState.lastX = e.screenX;
+      dragState.lastY = e.screenY;
+    }
+  });
+
+  document.addEventListener('mouseup', (e) => {
+    if (dragState && !dragState.moved && !isResizing) {
+      window.positiveAPI.dismissPopup();
+    }
+    dragState = null;
+    root.style.cursor = 'grab';
+  });
+
   // Custom resize handling for all edges
   let isResizing = false;
   let resizeDir = null;

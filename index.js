@@ -409,6 +409,17 @@ ipcMain.on('popup-resize', (_event, { width, height, x, y }) => {
   }
 });
 
+ipcMain.on('popup-move', (_event, { dx, dy }) => {
+  if (popupWindow) {
+    const [x, y] = popupWindow.getPosition();
+    popupWindow.setPosition(Math.round(x + dx), Math.round(y + dy));
+  }
+});
+
+ipcMain.on('popup-dismiss', () => {
+  if (popupWindow) popupWindow.hide();
+});
+
 ipcMain.handle('popup-get-bounds', () => {
   if (popupWindow) {
     return popupWindow.getBounds();
