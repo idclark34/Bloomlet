@@ -46,7 +46,6 @@
 
   // Custom resize handling for all edges
   let isResizing = false;
-  let resizeDirection = null;
   let startX = 0, startY = 0;
   let startWidth = 0, startHeight = 0;
 
@@ -85,7 +84,6 @@
 
   document.addEventListener('mouseup', () => {
     isResizing = false;
-    resizeDirection = null;
   });
 })();
 

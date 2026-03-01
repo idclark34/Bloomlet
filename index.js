@@ -190,6 +190,34 @@ function showPopup(options = {}) {
 
   popupWindow.setOpacity(0);
   popupWindow.showInactive();
+
+  const fadeStep = 0.08;
+
+  function fadeIn() {
+    let opacity = 0;
+    const interval = setInterval(() => {
+      opacity += fadeStep;
+      popupWindow && popupWindow.setOpacity(Math.min(opacity, 1));
+      if (opacity >= 1) {
+        clearInterval(interval);
+        const displayTime = (prefs.popupDuration ?? 5) * 1000;
+        setTimeout(fadeOut, displayTime);
+      }
+    }, 16);
+  }
+
+  function fadeOut() {
+    let o = 1;
+    const fade = setInterval(() => {
+      o -= fadeStep;
+      if (popupWindow) popupWindow.setOpacity(Math.max(o, 0));
+      if (o <= 0) {
+        clearInterval(fade);
+        if (popupWindow) popupWindow.hide();
+      }
+    }, 16);
+  }
+
   const deliver = () => {
     if (!popupWindow) return;
     const messageText = msg.text.replace(/\{name\}/g, prefs.userName || '');
@@ -208,37 +236,14 @@ function showPopup(options = {}) {
       }
     };
     setTimeout(step, 45);
+    fadeIn();
   };
+
   if (popupWindow.webContents.isLoadingMainFrame()) {
     popupWindow.webContents.once('did-finish-load', deliver);
   } else {
     popupWindow.webContents.once('did-finish-load', deliver);
     popupWindow.webContents.reloadIgnoringCache();
-  }
-
-  // Fade in
-  let opacity = 0;
-  const step = 0.08;
-  const fadeIn = setInterval(() => {
-    opacity += step;
-    popupWindow && popupWindow.setOpacity(Math.min(opacity, 1));
-    if (opacity >= 1) {
-      clearInterval(fadeIn);
-      const displayTime = (prefs.popupDuration ?? 5) * 1000;
-      setTimeout(() => fadeOut(), displayTime);
-    }
-  }, 16);
-
-  function fadeOut() {
-    let o = 1;
-    const fade = setInterval(() => {
-      o -= step;
-      if (popupWindow) popupWindow.setOpacity(Math.max(o, 0));
-      if (o <= 0) {
-        clearInterval(fade);
-        if (popupWindow) popupWindow.hide();
-      }
-    }, 16);
   }
 }
 
@@ -277,7 +282,7 @@ function createTray() {
     {
       label: 'Show now',
       click: () => {
-        setTimeout(() => showPopup({ preferCategory: 'motivational', isTest: true }), 5000);
+        showPopup({ preferCategory: 'motivational', isTest: true });
       },
     },
     {
