@@ -22,7 +22,8 @@
       system: '-apple-system, system-ui, Segoe UI, Roboto, sans-serif',
       serif: 'Georgia, "Times New Roman", serif',
       mono: '"Courier New", Courier, monospace',
-      rounded: '"Comic Sans MS", "Marker Felt", cursive'
+      rounded: '"Comic Sans MS", "Marker Felt", cursive',
+      cursive: '"Snell Roundhand", "Brush Script MT", "Apple Chancery", cursive'
     };
     text.style.fontFamily = fontMap[fontFamily] || fontMap.system;
 
