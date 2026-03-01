@@ -38,6 +38,9 @@
     $('quotes').checked = p.categories?.quotes !== false;
     $('position').value = p.position || 'corner';
     $('popupSize').value = p.popupSizePreset || 'medium';
+    const br = p.borderRadius ?? 14;
+    $('borderRadius').value = br;
+    $('borderRadiusLabel').textContent = `${br}px`;
     const opacity = Math.round((p.popupOpacity ?? 1) * 100);
     $('popupOpacity').value = opacity;
     $('popupOpacityLabel').textContent = `${opacity}%`;
@@ -55,6 +58,10 @@
 
   $('popupOpacity').addEventListener('input', () => {
     $('popupOpacityLabel').textContent = `${$('popupOpacity').value}%`;
+  });
+
+  $('borderRadius').addEventListener('input', () => {
+    $('borderRadiusLabel').textContent = `${$('borderRadius').value}px`;
   });
 
   $('custom-add').addEventListener('click', () => {
@@ -92,6 +99,7 @@
       },
       position: $('position').value,
       popupOpacity: Number($('popupOpacity').value) / 100,
+      borderRadius: Number($('borderRadius').value),
       popupSizePreset: sizePreset,
       popupSize: sizePresets[sizePreset],
       customMessages,

@@ -12,10 +12,11 @@
     text.style.fontSize = `${newSize}px`;
   }
 
-  window.positiveAPI.onPopupMessage(({ message, author, theme, fontFamily }) => {
+  window.positiveAPI.onPopupMessage(({ message, author, theme, fontFamily, borderRadius }) => {
     root.classList.remove('theme-dark','theme-pastel');
     if (theme === 'dark') root.classList.add('theme-dark');
     if (theme === 'pastel') root.classList.add('theme-pastel');
+    document.documentElement.style.setProperty('--radius', `${borderRadius ?? 14}px`);
 
     // Apply font family
     const fontMap = {

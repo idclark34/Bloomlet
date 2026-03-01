@@ -26,6 +26,7 @@ const defaultPrefs = {
   popupPosition: null, // { x, y } remembered from user dragging
   popupSizePreset: 'medium', // small | medium | large
   popupOpacity: 1, // 0.2–1.0
+  borderRadius: 14, // px, 0–28
   popupSize: { width: 320, height: 120 }, // user's preferred size
   fontFamily: 'system', // system | serif | mono | rounded
   customMessages: [], // user-written affirmations
@@ -224,7 +225,7 @@ function showPopup(options = {}) {
   const deliver = () => {
     if (!popupWindow) return;
     const messageText = msg.text.replace(/\{name\}/g, prefs.userName || '');
-    popupWindow.webContents.send('popup-message', { message: messageText, author: msg.author || null, theme: prefs.theme, fontFamily: prefs.fontFamily });
+    popupWindow.webContents.send('popup-message', { message: messageText, author: msg.author || null, theme: prefs.theme, fontFamily: prefs.fontFamily, borderRadius: prefs.borderRadius ?? 14 });
     // Stream typing from main to renderer
     let i = 0;
     const full = messageText;

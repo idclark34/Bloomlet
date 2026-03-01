@@ -9,6 +9,7 @@
       :root {
         --bg: #ffffff;
         --fg: #1f2937;
+        --radius: 14px;
       }
       .theme-dark { --bg: #1f2937; --fg: #f9fafb; }
       .theme-pastel { --bg: #f7e8fc; --fg: #2c2c2c; }
@@ -18,7 +19,7 @@
       }
       .card {
         width: 100%; height: 100%; display: grid; place-items: center; box-sizing: border-box;
-        background: var(--bg); color: var(--fg); border-radius: 14px; padding: 16px; text-align: center;
+        background: var(--bg); color: var(--fg); border-radius: var(--radius); padding: 16px; text-align: center;
         box-shadow: 0 10px 30px rgba(0,0,0,0.18);
         -webkit-app-region: drag;
         position: relative;
