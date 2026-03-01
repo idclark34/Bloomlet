@@ -25,6 +25,7 @@ const defaultPrefs = {
   position: 'corner', // corner | center
   popupPosition: null, // { x, y } remembered from user dragging
   popupSizePreset: 'medium', // small | medium | large
+  popupOpacity: 1, // 0.2–1.0
   popupSize: { width: 320, height: 120 }, // user's preferred size
   fontFamily: 'system', // system | serif | mono | rounded
   customMessages: [], // user-written affirmations
@@ -195,11 +196,12 @@ function showPopup(options = {}) {
   const fadeStep = 0.08;
 
   function fadeIn() {
+    const maxOpacity = prefs.popupOpacity ?? 1;
     let opacity = 0;
     const interval = setInterval(() => {
       opacity += fadeStep;
-      popupWindow && popupWindow.setOpacity(Math.min(opacity, 1));
-      if (opacity >= 1) {
+      popupWindow && popupWindow.setOpacity(Math.min(opacity, maxOpacity));
+      if (opacity >= maxOpacity) {
         clearInterval(interval);
         const displayTime = (prefs.popupDuration ?? 5) * 1000;
         setTimeout(fadeOut, displayTime);

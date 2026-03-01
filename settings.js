@@ -38,6 +38,9 @@
     $('quotes').checked = p.categories?.quotes !== false;
     $('position').value = p.position || 'corner';
     $('popupSize').value = p.popupSizePreset || 'medium';
+    const opacity = Math.round((p.popupOpacity ?? 1) * 100);
+    $('popupOpacity').value = opacity;
+    $('popupOpacityLabel').textContent = `${opacity}%`;
     customMessages = Array.isArray(p.customMessages) ? [...p.customMessages] : [];
     renderCustomList();
   }
@@ -48,6 +51,10 @@
   $('popupDuration').addEventListener('input', () => {
     const v = Number($('popupDuration').value);
     $('popupDurationLabel').textContent = v === 1 ? '1 second' : `${v} seconds`;
+  });
+
+  $('popupOpacity').addEventListener('input', () => {
+    $('popupOpacityLabel').textContent = `${$('popupOpacity').value}%`;
   });
 
   $('custom-add').addEventListener('click', () => {
@@ -84,6 +91,7 @@
         quotes: $('quotes').checked,
       },
       position: $('position').value,
+      popupOpacity: Number($('popupOpacity').value) / 100,
       popupSizePreset: sizePreset,
       popupSize: sizePresets[sizePreset],
       customMessages,
