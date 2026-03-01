@@ -46,21 +46,24 @@
 
   // Custom resize handling for all edges
   let isResizing = false;
+  let resizeDir = null;
   let startX = 0, startY = 0;
   let startWidth = 0, startHeight = 0;
+  let startBoundsX = 0, startBoundsY = 0;
 
   const minWidth = 240, minHeight = 80, maxWidth = 600, maxHeight = 400;
 
   document.querySelectorAll('.resize-handle').forEach(handle => {
     handle.addEventListener('mousedown', async (e) => {
       isResizing = true;
-      
+      resizeDir = [...handle.classList].find(c => c.startsWith('resize-') && c !== 'resize-handle');
       startX = e.screenX;
       startY = e.screenY;
       const bounds = await window.positiveAPI.getWindowBounds();
       startWidth = bounds.width;
       startHeight = bounds.height;
-      
+      startBoundsX = bounds.x;
+      startBoundsY = bounds.y;
       e.preventDefault();
       e.stopPropagation();
     });
@@ -68,22 +71,32 @@
 
   document.addEventListener('mousemove', (e) => {
     if (!isResizing) return;
-    
-    const deltaX = e.screenX - startX;
-    const deltaY = e.screenY - startY;
-    
-    // Scale proportionally - use the larger delta to maintain aspect ratio
-    const delta = Math.max(deltaX, deltaY);
-    
-    let newWidth = Math.max(minWidth, Math.min(maxWidth, startWidth + delta));
-    let newHeight = Math.max(minHeight, Math.min(maxHeight, startHeight + delta));
 
-    window.positiveAPI.resizeWindow(Math.round(newWidth), Math.round(newHeight), 0, 0);
+    const dx = e.screenX - startX;
+    const dy = e.screenY - startY;
+
+    let newWidth = startWidth;
+    let newHeight = startHeight;
+
+    if (resizeDir === 'resize-br' || resizeDir === 'resize-right') newWidth = startWidth + dx;
+    if (resizeDir === 'resize-br' || resizeDir === 'resize-bottom') newHeight = startHeight + dy;
+    if (resizeDir === 'resize-left') newWidth = startWidth - dx;
+    if (resizeDir === 'resize-top') newHeight = startHeight - dy;
+
+    newWidth = Math.max(minWidth, Math.min(maxWidth, newWidth));
+    newHeight = Math.max(minHeight, Math.min(maxHeight, newHeight));
+
+    // For left/top handles, move the window so the opposite edge stays fixed
+    const newX = resizeDir === 'resize-left' ? startBoundsX + (startWidth - newWidth) : startBoundsX;
+    const newY = resizeDir === 'resize-top' ? startBoundsY + (startHeight - newHeight) : startBoundsY;
+
+    window.positiveAPI.resizeWindow(Math.round(newWidth), Math.round(newHeight), Math.round(newX), Math.round(newY));
     scaleFontSize(newWidth, newHeight);
   });
 
   document.addEventListener('mouseup', () => {
     isResizing = false;
+    resizeDir = null;
   });
 })();
 

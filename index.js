@@ -378,17 +378,15 @@ ipcMain.on('popup-request', () => {
   showPopup({ preferCategory: 'motivational', isTest: true });
 });
 
-ipcMain.on('popup-resize', (_event, { width, height, deltaX, deltaY }) => {
+ipcMain.on('popup-resize', (_event, { width, height, x, y }) => {
   if (popupWindow) {
     const bounds = popupWindow.getBounds();
-    // When resizing from top or left, adjust position to keep opposite edge fixed
-    const newBounds = {
-      x: bounds.x - (deltaX || 0),
-      y: bounds.y - (deltaY || 0),
-      width,
-      height,
-    };
-    popupWindow.setBounds(newBounds);
+    popupWindow.setBounds({
+      x: x !== undefined ? Math.round(x) : bounds.x,
+      y: y !== undefined ? Math.round(y) : bounds.y,
+      width: Math.round(width),
+      height: Math.round(height),
+    });
   }
 });
 

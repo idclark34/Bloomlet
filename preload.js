@@ -8,7 +8,7 @@ contextBridge.exposeInMainWorld('positiveAPI', {
   getPrefs: () => ipcRenderer.send('prefs-get'),
   onPrefsData: (handler) => ipcRenderer.on('prefs-data', (_e, data) => handler(data)),
   savePrefs: (prefs) => ipcRenderer.send('prefs-save', prefs),
-  resizeWindow: (width, height, deltaX, deltaY) => ipcRenderer.send('popup-resize', { width, height, deltaX, deltaY }),
+  resizeWindow: (width, height, x, y) => ipcRenderer.send('popup-resize', { width, height, x, y }),
   getWindowBounds: () => ipcRenderer.invoke('popup-get-bounds'),
 });
 
