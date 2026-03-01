@@ -4,6 +4,8 @@ out
 .DS_Store
 .env
 build/*.provisionprofile
+certs/
+*.cer
 
 
 
