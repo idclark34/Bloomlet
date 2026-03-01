@@ -26,6 +26,9 @@ const defaultPrefs = {
   popupPosition: null, // { x, y } remembered from user dragging
   popupSizePreset: 'medium', // small | medium | large
   popupOpacity: 1, // 0.2–1.0
+  quietHoursEnabled: false,
+  quietHoursStart: '22:00',
+  quietHoursEnd: '08:00',
   borderRadius: 14, // px, 0–28
   popupSize: { width: 320, height: 120 }, // user's preferred size
   fontFamily: 'system', // system | serif | mono | rounded
@@ -185,8 +188,20 @@ function createPopupWindow() {
   popupWindow.on('resize', persistSize);
 }
 
+function isQuietHours() {
+  if (!prefs.quietHoursEnabled) return false;
+  const now = new Date();
+  const cur = now.getHours() * 60 + now.getMinutes();
+  const [sh, sm] = (prefs.quietHoursStart || '22:00').split(':').map(Number);
+  const [eh, em] = (prefs.quietHoursEnd || '08:00').split(':').map(Number);
+  const start = sh * 60 + sm;
+  const end = eh * 60 + em;
+  return start <= end ? cur >= start && cur < end : cur >= start || cur < end;
+}
+
 function showPopup(options = {}) {
   if (!isActive) return;
+  if (isQuietHours() && !options.isTest) return;
   if (!popupWindow) createPopupWindow();
   const msg = pickRandomMessage(options.preferCategory);
   if (!msg) return;

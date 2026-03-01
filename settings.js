@@ -37,6 +37,10 @@
     $('mindfulness').checked = !!p.categories?.mindfulness;
     $('quotes').checked = p.categories?.quotes !== false;
     $('position').value = p.position || 'corner';
+    $('quietHoursEnabled').checked = !!p.quietHoursEnabled;
+    $('quietHoursStart').value = p.quietHoursStart || '22:00';
+    $('quietHoursEnd').value = p.quietHoursEnd || '08:00';
+    $('quietHoursRange').style.display = p.quietHoursEnabled ? 'block' : 'none';
     $('popupSize').value = p.popupSizePreset || 'medium';
     const br = p.borderRadius ?? 14;
     $('borderRadius').value = br;
@@ -62,6 +66,10 @@
 
   $('borderRadius').addEventListener('input', () => {
     $('borderRadiusLabel').textContent = `${$('borderRadius').value}px`;
+  });
+
+  $('quietHoursEnabled').addEventListener('change', () => {
+    $('quietHoursRange').style.display = $('quietHoursEnabled').checked ? 'block' : 'none';
   });
 
   $('custom-add').addEventListener('click', () => {
@@ -98,6 +106,9 @@
         quotes: $('quotes').checked,
       },
       position: $('position').value,
+      quietHoursEnabled: $('quietHoursEnabled').checked,
+      quietHoursStart: $('quietHoursStart').value,
+      quietHoursEnd: $('quietHoursEnd').value,
       popupOpacity: Number($('popupOpacity').value) / 100,
       borderRadius: Number($('borderRadius').value),
       popupSizePreset: sizePreset,
