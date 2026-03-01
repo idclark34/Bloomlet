@@ -24,6 +24,7 @@ const defaultPrefs = {
   },
   position: 'corner', // corner | center
   popupPosition: null, // { x, y } remembered from user dragging
+  popupSizePreset: 'medium', // small | medium | large
   popupSize: { width: 320, height: 120 }, // user's preferred size
   fontFamily: 'system', // system | serif | mono | rounded
   customMessages: [], // user-written affirmations

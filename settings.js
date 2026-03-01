@@ -37,6 +37,7 @@
     $('mindfulness').checked = !!p.categories?.mindfulness;
     $('quotes').checked = p.categories?.quotes !== false;
     $('position').value = p.position || 'corner';
+    $('popupSize').value = p.popupSizePreset || 'medium';
     customMessages = Array.isArray(p.customMessages) ? [...p.customMessages] : [];
     renderCustomList();
   }
@@ -62,7 +63,14 @@
     if (e.key === 'Enter') $('custom-add').click();
   });
 
+  const sizePresets = {
+    small:  { width: 260, height: 100 },
+    medium: { width: 320, height: 120 },
+    large:  { width: 420, height: 160 },
+  };
+
   $('save').addEventListener('click', () => {
+    const sizePreset = $('popupSize').value;
     const prefs = {
       userName: $('userName').value.trim(),
       interval: $('interval').value,
@@ -76,6 +84,8 @@
         quotes: $('quotes').checked,
       },
       position: $('position').value,
+      popupSizePreset: sizePreset,
+      popupSize: sizePresets[sizePreset],
       customMessages,
     };
     window.positiveAPI.savePrefs(prefs);
