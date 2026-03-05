@@ -16,4 +16,7 @@ set -o allexport
 source "$ROOT/.env"
 set +o allexport
 
+# Ensure Xcode's notarytool is on PATH (needed on Xcode beta where xcrun can't find it)
+export PATH="/Applications/Xcode.app/Contents/Developer/usr/bin:$PATH"
+
 npm run build:mac

@@ -28,6 +28,7 @@ module.exports = async function notarizing(context) {
     appleId: process.env.APPLE_ID,
     appleIdPassword: process.env.APPLE_APP_SPECIFIC_PASSWORD,
     teamId: process.env.APPLE_TEAM_ID || 'C224CY39M8',
+    notarytoolPath: '/Applications/Xcode.app/Contents/Developer/usr/bin/notarytool',
   });
 };
 
